@@ -1,0 +1,33 @@
+{% extends 'home/model_clean.html' %}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block TITULO %}
+<title>Autor</title>
+{% endblock %}
+
+{% block SUB_TITULO %}
+<h1 class="h4 text-gray-900 mb-4">Autor da Obra</h1>
+{% endblock %}
+
+{% block FORM_CAMPOS %}
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form|crispy }}
+
+	<a href="{% url 'index' %}" class="btn btn-primary btn-user btn-block">
+	Voltar
+	</a>
+
+
+	<button type="submit" class="btn btn-primary btn-user btn-block">Cadastrar</button>
+
+
+</form>
+{% endblock %}
+
+{% block LINKS %}
+
+{% endblock %}

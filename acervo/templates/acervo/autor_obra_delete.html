@@ -1,0 +1,54 @@
+{% extends 'home/model_clean.html' %}
+
+{% load static %}
+
+{% block TITULO %}
+<title>Autor</title>
+{% endblock %}
+
+{% block SUB_TITULO %}
+<h1 class="h4 text-gray-900 mb-4">Autor da Obra</h1>
+{% endblock %}
+
+{% block FORM_CAMPOS %}
+<form action="" method="post">
+
+	<p>
+		Deletar o registro  : <strong> {{ object.name }} </strong>
+    </p>
+
+	{% csrf_token %}
+    {{ form.as_p }}
+
+	<a href="{% url 'index' %}" class="btn btn-primary btn-user btn-block">
+	Voltar
+	</a>
+
+	<button class="btn btn-primary btn-danger btn-block" type="button" data-toggle="modal" data-target="#DeleteModal">Excluir Registro</button>
+
+	<!-- popup -->
+    <div class="modal fade" id="DeleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">ATENÇÂO</h5>
+                    <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">Após excluído, o registro não poderá ser recuperado! Clique em  "Deletar"  para confirmar !!!.</div>
+                <div class="modal-footer">
+                    <button class="btn btn-secondary btn-block" type="button" data-dismiss="modal">Cancel</button>
+					<button type="submit" class="btn btn-primary btn-danger btn-block">Deletar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</form>
+{% endblock %}
+
+{% block LINKS %}
+
+{% endblock %}

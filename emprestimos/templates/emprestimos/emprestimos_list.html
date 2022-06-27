@@ -1,0 +1,69 @@
+{% extends 'home/model_full.html' %}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block TITULO %}
+<title>Lista de Emprestimos</title>
+{% endblock %}
+
+
+{% block CONTEUDO_PAG %}
+<div class="container-fluid">
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Lista de Emprestimos</h1>
+	<div class="card shadow mb-4">
+		<div class="card-header py-3">
+            <a href="{% url 'emprestimos-cadastro' %}" class="btn btn-primary btn-user ">Criar novo Emprestimo</a>
+			<div class="card-body">
+				<div class="table-responsive">
+					<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+						<thead>
+                            <tr>
+                                <th>Obra</th>
+                                <th>Usuário</th>
+
+                                <th>Opções de ação</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Obra</th>
+                                <th>Usuário</th>
+
+                                <th>Opções de ação</th>
+                            </tr>
+                        </tfoot>
+
+						{% for z_emprestimos in object_list %}
+                        <tr>
+                            <td>{{ z_emprestimos.obra }}</td>
+                            <td>{{ z_emprestimos.usuario }}</td>
+
+                            <td>
+                                <a class="nav-link" href="{% url 'emprestimos-update' z_emprestimos.pk %}">
+                                    <i class="fas fa-edit"></i>
+                                    <span>Editar</span>
+                                </a>
+                                <a class="nav-link" href="{% url 'emprestimos-delete' z_emprestimos.pk %}">
+                                    <i class="fas fa-trash-alt"></i>
+                                    <span>Deletar</span>
+                                </a>
+                            </td>
+                        </tr>
+						{% empty %}
+                            <tr>
+                                <td colspan="3">Nenhum Emprestimo cadastrado</td>
+                            </tr>
+						{% endfor %}
+
+					</table>
+				</div>
+			</div>
+        </div>
+
+	</div>
+</div>
+{% endblock %}
+

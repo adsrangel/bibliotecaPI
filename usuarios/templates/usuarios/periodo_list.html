@@ -1,0 +1,66 @@
+{% extends 'home/model_full.html' %}
+
+{% load static %}
+
+{% load crispy_forms_tags %}
+
+{% block TITULO %}
+<title>Lista de Periodos</title>
+{% endblock %}
+
+
+{% block CONTEUDO_PAG %}
+<div class="container-fluid">
+<!-- Page Heading -->
+<h1 class="h3 mb-2 text-gray-800">Lista de Periodos</h1>
+	<div class="card shadow mb-4">
+		<div class="card-header py-3">
+            <a href="{% url 'periodo-cadastro' %}" class="btn btn-primary btn-user ">Criar novo Periodos</a>
+			<div class="card-body">
+				<div class="table-responsive">
+					<table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+						<thead>
+                            <tr>
+                                <th>Nome</th>
+
+                                <th>Opções de ação</th>
+                            </tr>
+                        </thead>
+                        <tfoot>
+                            <tr>
+                                <th>Nome</th>
+
+                                <th>Opções de ação</th>
+                            </tr>
+                        </tfoot>
+
+						{% for z_periodo in object_list %}
+                        <tr>
+                            <td>{{ z_periodo.name }}</td>
+
+                            <td>
+                                <a class="nav-link" href="{% url 'periodo-update' z_periodo.pk %}">
+                                    <i class="fas fa-edit"></i>
+                                    <span>Editar</span>
+                                </a>
+                                <a class="nav-link" href="{% url 'periodo-delete' z_periodo.pk %}">
+                                    <i class="fas fa-trash-alt"></i>
+                                    <span>Deletar</span>
+                                </a>
+                            </td>
+                        </tr>
+						{% empty %}
+                            <tr>
+                                <td colspan="3">Nenhum Periodo cadastrado</td>
+                            </tr>
+						{% endfor %}
+
+					</table>
+				</div>
+			</div>
+        </div>
+
+	</div>
+</div>
+{% endblock %}
+
